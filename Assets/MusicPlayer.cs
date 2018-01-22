@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
@@ -11,18 +10,14 @@ public class MusicPlayer : MonoBehaviour
      */
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        Invoke("LoadFirstScene", 2f);
-	}
-	
-	// Update is called once per frame
-	void LoadFirstScene()
-    {
-        SceneManager.LoadScene(1);       
-	}
+        int numMusicPlayer = FindObjectsOfType<MusicPlayer>().Length;
+        if(numMusicPlayer > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }        
+    }    
 }

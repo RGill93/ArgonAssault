@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{622297DC-FB42-3F72-F7F0-C287A9E083B6}</ProjectGuid>
+    <ProjectGuid>{36D5C3E3-33A7-6841-A4C7-A9B781B8300D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -282,48 +282,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\Joystick.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\MobileControlRig.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\TiltInput.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\TouchPad.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\Scripts\VirtualInput.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\ActivateTrigger.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\AlphaButtonClickMask.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\AutoMobileShaderSwitch.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\AutoMoveAndRotate.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\CameraRefocus.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\CurveControlledBob.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\DragRigidbody.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\DynamicShadowSettings.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\EventSystemChecker.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\FollowTarget.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\ForcedReset.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\FOVKick.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\FPSCounter.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\LerpControlledBob.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\ObjectResetter.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\ParticleSystemDestroyer.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\PlatformSpecificContent.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\SimpleActivatorMenu.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\SimpleMouseRotator.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\SmoothFollow.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\TimedObjectActivator.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\TimedObjectDestructor.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\WaypointCircuit.cs" />
-    <Compile Include="Assets\AssetPacks\Standard Assets\Utility\WaypointProgressTracker.cs" />
-    <Compile Include="Assets\CollsionHandler.cs" />
-    <Compile Include="Assets\Enemy.cs" />
-    <Compile Include="Assets\MusicPlayer.cs" />
-    <Compile Include="Assets\PlayerController.cs" />
-    <Compile Include="Assets\SceneLoader.cs" />
-    <Compile Include="Assets\ScoreBoard.cs" />
-    <Compile Include="Assets\SelfDestruct.cs" />
+    <ProjectReference Include="ArgonAssault.csproj">
+      <Project>{622297DC-FB42-3F72-F7F0-C287A9E083B6}</Project>
+      <Name>ArgonAssault</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\AssetPacks\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AssetPacks\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

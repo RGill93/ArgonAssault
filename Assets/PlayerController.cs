@@ -3,31 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [Tooltip("In ms^-1")] [SerializeField] float speed = 20f;
+    [Header("General")]
+    [Tooltip("In ms^-1")] [SerializeField] float controlSpeed = 20f;
     [Tooltip("In ms^-1")] [SerializeField] float xRange = 5f;
     [Tooltip("In ms^-1")] [SerializeField] float yRange = 5f;
+    [SerializeField] GameObject[] guns;
 
+    [Header("Screen-Position Based")]
     [SerializeField] float positionPitchFactor = -5f;
     [SerializeField] float controlPitchFactor = -20f;
 
+    [Header("Control-Throw Based")]
     [SerializeField] float positionYawFactor = 5f;
     [SerializeField] float controlRollFactor = -20f;
 
     float xThrow, yThrow;
-
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
-
+    bool isControlEnabled = true;
+     
     // Update is called once per frame
     void Update()
     {
-        ProcessTranslation();
-        ProcessRotation();
+        if (isControlEnabled)
+        {
+            ProcessTranslation();
+            ProcessRotation();
+            ProcessFiring();
+        }        
+    }
+
+    // Called by string reference
+    void OnPlayerDeath()
+    {
+        isControlEnabled = false;
     }
 
     /*
@@ -39,8 +48,8 @@ public class Player : MonoBehaviour
         float xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
         float yThrow = CrossPlatformInputManager.GetAxis("Vertical");
 
-        float xOffSet = xThrow * speed * Time.deltaTime;
-        float yOffSet = yThrow * speed * Time.deltaTime;
+        float xOffSet = xThrow * controlSpeed * Time.deltaTime;
+        float yOffSet = yThrow * controlSpeed * Time.deltaTime;
 
         float rawXPos = transform.localPosition.x + xOffSet;
         float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
@@ -63,8 +72,40 @@ public class Player : MonoBehaviour
 
         float yaw = transform.localPosition.x * positionYawFactor;
 
-        float roll = xThrow * controlRollFactor; 
+        float roll = xThrow * controlRollFactor;
 
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+    }
+
+    /*
+     * Three below functions handle the weapon fire
+     * from an array of guns
+     */ 
+    private void ProcessFiring()
+    {
+        if(CrossPlatformInputManager.GetButton("Fire"))
+        {
+            ActivateGuns();            
+        }
+        else
+        {
+            DeactivateGuns();
+        }
+    }
+
+    private void ActivateGuns()
+    {
+        foreach(GameObject gun in guns)
+        {
+            gun.SetActive(true);
+        }        
+    }
+
+    private void DeactivateGuns()
+    {
+        foreach(GameObject gun in guns)
+        {
+            gun.SetActive(false);
+        }
     }
 }
